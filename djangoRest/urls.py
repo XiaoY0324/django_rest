@@ -14,8 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from snippets import views
 
 urlpatterns = [
+    path('', views.api_root),
     path('admin/', admin.site.urls),
+    path('snippets/', include('snippets.urls')),
+    path('api-auth/', include('rest_framework.urls')) # 可浏览的API的登录和注销视图。
 ]
